@@ -19,11 +19,11 @@ class Restaurant(Document):
     phone_number:Optional[str]=None
     opening_hours:List[OpeningHours]=[]
     is_active:bool=True
-class Settings:
-    
-    name:str="restaurants"
-    indexes=[
-        IndexModel([("city", ASCENDING)]),
-        IndexModel([("name",ASCENDING)]),
-        IndexModel([("cuisine", ASCENDING)]),
-    ]
+    class Settings:
+        
+        name:str="restaurants"
+        indexes=[
+            IndexModel([("city", ASCENDING)]),
+            IndexModel([("name",ASCENDING)]),
+            IndexModel([("cuisine", ASCENDING)]),
+        ]

@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.database import init_db
-from app.api import restaurants, reservations, users
+from app.api import restaurants, reservation, users
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await init_db()
@@ -16,7 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 app.include_router(restaurants.router, prefix="/restaurants", tags=["restaurants"])
-app.include_router(reservations.router, prefix="/reservations", tags=["reservations"])
+app.include_router(reservation.router, prefix="/reservations", tags=["reservations"])
 app.include_router(users.router, prefix="/users", tags=["users"])
 
 @app.get("/health")
