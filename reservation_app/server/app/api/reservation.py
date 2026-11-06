@@ -38,7 +38,7 @@ async def get_reservation(reservation_id:PydanticObjectId):
     if not reservation:
         raise HTTPException(status_code=400,detail='Reservation not found')
     return reservation
-@router.patch("/{resrrvation_id}",response_model=Reservation)
+@router.patch("/{reservation_id}",response_model=Reservation)
 async def update_reservation_status(reservation_id:PydanticObjectId,new_status:ReservationStatus):
     reservation=await Reservation.get(reservation_id)
     if not reservation:
