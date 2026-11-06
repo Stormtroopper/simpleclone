@@ -8,6 +8,11 @@ async def lifespan(app: FastAPI):
     await init_db()
     yield
 app=FastAPI(title="Restaurant Reservation API", description="test",version="0.1.0",lifespan=lifespan)
+# allowed_origins = [
+#     origin.strip()
+#     for origin in os.getenv("CORS_ORIGINS", "http://localhost:5173").split(",")
+#     if origin.strip()
+# ]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,9 +20,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.include_router(restaurants.router, prefix="/restaurants", tags=["restaurants"])
-app.include_router(reservation.router, prefix="/reservations", tags=["reservations"])
-app.include_router(users.router, prefix="/users", tags=["users"])
+app.include_router(users.router)
+app.include_router(restaurants.router)
+# app.include_router(tables.router)
+app.include_router(reservation.router)
 
 @app.get("/health")
 async def health_check():
