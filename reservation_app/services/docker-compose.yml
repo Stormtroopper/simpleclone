@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+  api-gateway:
+    build: ./services/api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-service
+      - reservation-service
+      - booking-service
+  user-service:
+    build: ./services/user-service
+    ports:
+      - "8001:8001"
+    environment:
+    - MONGODB_URL=mongodb://mongodb:27017
+    - DATABASE_NAME=users_db
+  reservation-service:
+    build: ./services/reservation-service
+    ports:
+      - "8002:8002"
+    environment:
+    - MONGODB_URL=mongodb://mongodb:27017
+    - DATABASE_NAME=reservations_db
+  booking-service:
+    build: ./services/booking-service
+    ports:
+      - "8003:8003"
+    environment:
+    - MONGODB_URL=mongodb://mongodb:27017
+    - DATABASE_NAME=bookings_db
+    depends_on:
+      - mongodb
+  notification-service:
+      build: ./services/notification-service
+      ports:
+        - "8004:8004"
+
+volumes:
+  mongodb_data:
