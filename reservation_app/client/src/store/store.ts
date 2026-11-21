@@ -1,0 +1,13 @@
+import {configureStore} from '@reduxjs/toolkit';
+import authReducer from '../reducers/slices/authSlice';
+import bookingReducer from '../reducers/slices/bookingSlice'; 
+
+export const store=configureStore({
+    reducer:{
+        auth:authReducer,
+        
+        booking:bookingReducer
+    }
+})
+export const RootState=ReturnType<typeof store.getState>
+export type AppDispatch=typeof store.dispatch
