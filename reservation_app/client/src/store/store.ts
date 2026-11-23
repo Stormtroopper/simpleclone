@@ -4,8 +4,7 @@ import bookingReducer from '../reducers/slices/bookingSlice';
 
 export const store=configureStore({
     reducer:{
-        auth:authReducer,
-        
+        auth:authReducer,        
         booking:bookingReducer
     }
 })

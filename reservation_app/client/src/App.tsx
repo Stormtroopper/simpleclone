@@ -6,25 +6,26 @@ import type { RootState } from './store/store'
 import { ProtectedRoute } from './components/ui/ProtectedRoute'
 import RestaurantCard from './components/restaurants/RestaurantCard'
 import { RestaurantList } from './components/restaurants/RestaurantList'
+import { Register } from './pages/Register'
+import NotFound from './pages/NotFound'
+import { NavBar } from './components/ui/NavBar'
 function App() {
   const isAuthenticated=useSelector((state:RootState)=>state.auth.isAuthenticated)
   return (
     <>
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-red-600">
-        Tailwind is working!
-      </h1>
-    </div>
+    <NavBar isAuthenticated={isAuthenticated}/>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login isAuthenticated={isAuthenticated} />} />
+        <Route path="/register" element={<Register isAuthenticated={isAuthenticated} />} />
         <Route path="/restaurants"element={<ProtectedRoute isAuthenticated={isAuthenticated} >
           <RestaurantCard/>
         </ProtectedRoute>} />
-                <Route path="/restaurants"element={<ProtectedRoute isAuthenticated={isAuthenticated} >
+                <Route path="/restaurants-list"element={<ProtectedRoute isAuthenticated={isAuthenticated} >
           <RestaurantList/>
         </ProtectedRoute>} />
+        <Route path='*' element={<NotFound/>}/>
       </Routes>
     </Router>
     </>

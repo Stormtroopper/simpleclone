@@ -136,7 +136,7 @@ export const Register = ({ isAuthenticated }: RegisterProps) => {
         {errors.root?.server && (
           <p className="text-sm text-red-600">{errors.root.server.message}</p>
         )}
-        <Button type="submit" disabled={isSubmitting} className="w-full">
+        <Button type="submit" disabled={isSubmitting} className="w-full" error={errors?.root?.server.message}>
           {isSubmitting ? 'Creating account...' : 'Register'}
         </Button>
       </form>

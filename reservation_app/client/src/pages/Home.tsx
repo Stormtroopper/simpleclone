@@ -1,11 +1,14 @@
-import React from 'react'
+interface HomeProps{
+  isAuthenticated:boolean
+}
+const Home = ({isAuthenticated}:HomeProps) => {
 
-const Home = () => {
   return (
     <div>
       <h1 className="text-4xl font-bold text-red-600">
         Welcome to the Home Page!
       </h1>
+
     </div>
   )
 }

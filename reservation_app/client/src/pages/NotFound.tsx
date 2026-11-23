@@ -1,13 +1,9 @@
-import React from 'react'
-
-const NotFound = () => {
+function NotFound() {
   return (
-    <div>
-      <h1 className="text-4xl font-bold text-red-600">
-        Page Not Found
-      </h1>
+    <div className="flex flex-col items-center justify-center py-24">
+      <h1 className="text-4xl font-bold text-gray-800">404</h1>
+      <p className="mt-2 text-gray-600">Page not found</p>
     </div>
   )
 }
-
-export default NotFound
+export default NotFound;
