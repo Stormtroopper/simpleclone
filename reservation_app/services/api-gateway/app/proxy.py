@@ -1,11 +1,12 @@
 from fastapi import APIRouter,HttpException,Request
-from app.api import user_url,booking_url,restaurant_url
+from app.api import user_url,booking_url,restaurant_url,feature_url
 import httpx
 router = APIRouter()
 SERVICE_URLS={
     "users":user_url,
     "bookings":booking_url,
-    "restaurants":restaurant_url
+    "restaurants":restaurant_url,
+   "features":feature_url
 }
 @router.api_route("/{service_name}/{path:path}",methods=["GET","POST","PUT","DELETE"])
 async def proxy_request(service_name:str,path:str,request:Request):
