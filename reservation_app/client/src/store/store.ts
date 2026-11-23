@@ -9,5 +9,5 @@ export const store=configureStore({
         booking:bookingReducer
     }
 })
-export const RootState=ReturnType<typeof store.getState>
+export type RootState=ReturnType<typeof store.getState>
 export type AppDispatch=typeof store.dispatch
